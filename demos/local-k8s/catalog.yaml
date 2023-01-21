@@ -32,10 +32,12 @@ spec:
     spec:
       containers:
       - name: catalog
-        image: catalog:latest
+        image: catalog:dev
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
+        - name: SwaggerOptions__IsSwaggerEnable
+          value: "true"
         - name: CONNECTIONSTRINGS__DEFAULTCONNECTION
           value: Server=sqlserver;Database=EventCatalogDb;User=sa;pwd=P@ssW0rd!;MultipleActiveResultSets=true
         ports:

@@ -31,10 +31,12 @@ spec:
     spec:
       containers:
       - name: ordering
-        image: ordering:latest
+        image: ordering:dev
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
+        - name: SwaggerOptions__IsSwaggerEnable
+          value: "true"
         ports:
         - containerPort: 80
         imagePullPolicy: IfNotPresent

@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: frontend:latest
+        image: frontend:dev
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
