@@ -1,13 +1,19 @@
-using GloboTicket.Catalog;
+using GloboTicket.Catalog.Config;
 using GloboTicket.Catalog.Repositories;
 using GloboTicket.Services.EventCatalog.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Configuration.AddEnvironmentVariables();
 // Add services to the container.
 builder.Services.AddHttpClient();
 builder.Services.AddControllers();
+
+var swaggerOptions = new SwaggerOptions();
+builder.Configuration.GetSection(SwaggerOptions.Key).Bind(swaggerOptions);
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,10 +37,14 @@ if (app.Environment.IsDevelopment())
         var context = serviceScope.ServiceProvider.GetRequiredService<EventCatalogDbContext>();
         context.Database.EnsureCreated();
     }
+}
+
+
+if (swaggerOptions.IsSwaggerEnable)
+{
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

@@ -1,8 +1,14 @@
+using GloboTicket.Ordering.Config;
 using GloboTicket.Ordering.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+var swaggerOptions = new SwaggerOptions();
+builder.Configuration.GetSection(SwaggerOptions.Key).Bind(swaggerOptions);
 // Add services to the container.
+builder.Configuration.AddEnvironmentVariables();
 
 
 builder.Services.AddControllers();
@@ -16,11 +22,18 @@ builder.Services.AddApplicationInsightsTelemetry();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+
+if (swaggerOptions.IsSwaggerEnable)
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseRouting();
 app.UseAuthorization();
