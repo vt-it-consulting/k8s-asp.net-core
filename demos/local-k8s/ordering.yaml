@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: ordering
-        image: vtitconsulting/ordering:dev
+        image: vtitconsulting/ordering:prod
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development

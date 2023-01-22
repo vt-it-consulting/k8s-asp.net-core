@@ -16,6 +16,7 @@ services:
   catalog:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - SwaggerOptions__IsSwaggerEnable=true
       - CONNECTIONSTRINGS__DEFAULTCONNECTION= Server=sqlserver;Database=EventCatalogDb;User=sa;pwd=P@ssW0rd!;MultipleActiveResultSets=true
     ports:
       - "80"
@@ -25,6 +26,7 @@ services:
   ordering:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - SwaggerOptions__IsSwaggerEnable=true
     ports:
       - "80"
     volumes:

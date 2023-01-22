@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: catalog
-        image: vtitconsulting/catalog:dev
+        image: vtitconsulting/catalog:prod
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
