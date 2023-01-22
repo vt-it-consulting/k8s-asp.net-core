@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: vtitconsulting/frontend:prod
+        image: vtitconsulting/frontend:v1
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
