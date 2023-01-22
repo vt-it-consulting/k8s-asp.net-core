@@ -39,7 +39,7 @@ spec:
         - name: SwaggerOptions__IsSwaggerEnable
           value: "true"
         - name: CONNECTIONSTRINGS__DEFAULTCONNECTION
-          value: Server=sqlserver;Database=EventCatalogDb;User=sa;pwd=P@ssW0rd!;MultipleActiveResultSets=true
+          value: Server=sqlserver;Database=EventCatalogDb;User=sa;pwd=P@ssW0rd!;MultipleActiveResultSets=true;TrustServerCertificate=True
         ports:
         - containerPort: 80
         imagePullPolicy: IfNotPresent
