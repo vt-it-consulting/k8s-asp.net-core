@@ -47,9 +47,9 @@ spec:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
         - name: ApiConfigs__ConcertCatalog__Uri
-          value: http://catalog:8080
+          value: http://service-catalog:8080
         - name: ApiConfigs__Ordering__Uri
-          value: http://ordering:8080
+          value: http://service-ordering:8080
         ports:
         - containerPort: 80
         imagePullPolicy: IfNotPresent

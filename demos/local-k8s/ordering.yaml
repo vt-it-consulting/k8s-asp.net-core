@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: ordering
+  name: service-ordering
   labels:
     app: ordering
 spec:
