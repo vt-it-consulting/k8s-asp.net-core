@@ -32,6 +32,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dashboard-k8s", "dashboard-
 		demos\dashboard\service-account.yaml = demos\dashboard\service-account.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "remote-k8s", "remote-k8s", "{3D00EBC8-4D07-449E-A5EE-D51B4D0F55AC}"
+	ProjectSection(SolutionItems) = preProject
+		demos\remote-k8s\catalog.yaml = demos\remote-k8s\catalog.yaml
+		demos\remote-k8s\create-acr.txt = demos\remote-k8s\create-acr.txt
+		demos\remote-k8s\create-cluster.txt = demos\remote-k8s\create-cluster.txt
+		demos\remote-k8s\frontend.yaml = demos\remote-k8s\frontend.yaml
+		demos\remote-k8s\ordering.yaml = demos\remote-k8s\ordering.yaml
+		demos\remote-k8s\sqlserver.yaml = demos\remote-k8s\sqlserver.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +71,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{004EDD28-C061-4910-9DC3-9144530B1836} = {26E30656-0182-4EEF-B89E-281F23389C42}
 		{3EC78A2A-4D65-46E6-9481-40C3DBF96484} = {26E30656-0182-4EEF-B89E-281F23389C42}
+		{3D00EBC8-4D07-449E-A5EE-D51B4D0F55AC} = {26E30656-0182-4EEF-B89E-281F23389C42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9F232D3-5386-4E57-B49F-7AF54A4A8843}

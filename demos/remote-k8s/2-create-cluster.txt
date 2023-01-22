@@ -1,0 +1,53 @@
+
+# troubleshooting
+# https://stackoverflow.com/questions/38475104/azure-cli-how-to-change-subscription-default
+
+# azure aks with
+https://learn.microsoft.com/en-us/azure/aks/kubernetes-service-principal?tabs=azure-cli
+https://www.azuredevopslabs.com/labs/vstsextend/kubernetes/
+
+
+# variables
+AKS_RESOURCE_GROUP=vt-k8s-aks-RG
+AKS_CLUSTER_NAME=cluster-vt-it-consulting
+ACR_NAME=vtitconsulting
+
+# 1°
+#create the resource group in Azure
+az group create --name vt-k8s-aks-RG --location westeurope
+
+# 2°
+#Create the cluster, this can take a few minutes
+# https://www.azuredevopslabs.com/labs/vstsextend/kubernetes/
+az aks create -n cluster-vt-it-consulting -g vt-k8s-aks-RG --node-osdisk-type Ephemeral --node-osdisk-size 30 --network-plugin azure --generate-ssh-keys
+az aks update -n cluster-vt-it-consulting -g vt-k8s-aks-RG --attach-acr vtitconsulting
+
+# 3°
+# create a service principal
+# https://www.opsmx.com/blog/create-and-update-the-service-principal-key-for-azure-kubernetes-service-aks/
+az ad sp create-for-rbac --skip-assignment --name "sp-vtitconsulting-aks"
+
+# 4°
+SP_ID=<service principal>
+SP_SECRET=<service secret>
+az role assignment create --assignee $SP_ID --role AcrPull
+
+
+# 5°
+# https://learn.microsoft.com/en-us/azure/aks/update-credentials
+az aks update-credentials \
+    --resource-group myResourceGroup \
+    --name myAKSCluster \
+    --reset-service-principal \
+    --service-principal "$SP_ID" \
+    --client-secret "${SP_SECRET:Q}"
+
+az aks update-credentials --resource-group vt-k8s-aks-RG --name cluster-vt-it-consulting  --reset-service-principal --service-principal c8d89247-9077-40a7-8252-41c1fe9fde63 --client-secret CMk8Q~xVz1gk9Xx1zhh4UlpD~~06SbKWmnJWbbOe
+
+# 6°
+#Get the credentials merged in your local .kube file that is used by e.g. kubectl
+az aks get-credentials -n cluster-vt-it-consulting -g vt-k8s-aks-RG
+
+
+
+

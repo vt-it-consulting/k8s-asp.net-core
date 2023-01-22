@@ -1,0 +1,21 @@
+
+# 1°
+# create azure ACR
+az acr create -n vtitconsulting -g vt-k8s-aks-RG --sku Standard
+# after that go to the web page and set "Admin user" to admin!
+az acr login -n  vtitconsulting
+
+ 
+# 2°
+# tag the image if neccessing
+docker tag frontend vtitconsulting.azurecr.io/frontend
+docker tag catalog vtitconsulting.azurecr.io/catalog
+docker tag ordering vtitconsulting.azurecr.io/ordering
+
+# login to docker login
+docker login vtitconsulting.azurecr.io
+# push the image to docker
+docker push vtitconsulting.azurecr.io/frontend
+docker push vtitconsulting.azurecr.io/catalog
+docker push vtitconsulting.azurecr.io/ordering
+
